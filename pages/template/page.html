@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="theme.css">
+    {% block head %}{% endblock %}
+</head>
+
+<body>
+    <header>
+        {% block header %}{% endblock %}
+    </header>
+    <main>
+        {% block main %}{% endblock %}
+    </main>
+    <footer>
+        <span class="socials">
+            <a href="https://notes.ohaizac.dev" onclick="alert('Under Construction ⚠️');">notes</a>
+            <a href="https://card.ohaizac.dev" onclick="alert('Under Construction ⚠️')">card</a>
+            <a href="https://github.com/zaccnz/">github</a>
+            <a href="https://www.linkedin.com/in/zac-cleveland">linkedin</a>
+        </span>
+        <span class="copyright">
+            2023
+        </span>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+header a {
+    color: var(--link);
+    transition: color 1s ease;
+    text-decoration: none;
+}
+
+header a:hover {
+    color: var(--link-hover);
+    text-decoration: underline;
+}
+
+main p {
+    font-family: HelveticaLight, Arial, sans-serif;
+    color: var(--text);
+    font-size: 1.5em;
+}
+
+main a {
+    color: var(--link);
+    text-decoration: none;
+    -webkit-user-select: all;
+    -moz-user-select: all;
+    -ms-user-select: all;
+    user-select: all;
+}

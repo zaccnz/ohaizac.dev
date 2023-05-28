@@ -1,0 +1,12 @@
+[package]
+name = "ohaizac_dev"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tokio = { version = "1", features = ["full"] }
+warp = "0.3"
+serde = { version = "1.0.160", features = ["derive"] }
+serde_json = "1.0.96"
+futures = "0.3.28"
+askama = "0.12.0"

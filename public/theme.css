@@ -1,0 +1,122 @@
+@font-face {
+    font-family: HelveticaBold;
+    src: url(font/Helvetica-Bold.ttf);
+}
+
+@font-face {
+    font-family: HelveticaLight;
+    src: url(font/Helvetica-Light.ttf);
+}
+
+:root {
+    --background: #fff;
+    --text: #000;
+    --link: rgba(0, 0, 0, 0.6);
+    --link-hover: #000;
+    --link-before: rgba(0, 0, 0, 0);
+    --link-before-hover: rgba(0, 0, 0, 0.6);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #100f1c;
+        --text: #fff;
+        --link: rgba(255, 255, 255, 0.6);
+        --link-hover: #fff;
+        --link-before: rgba(255, 255, 255, 0);
+        --link-before-hover: rgba(255, 255, 255, 0.6);
+    }
+}
+
+html,
+body {
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+
+    background-color: var(--background);
+
+    display: flex;
+    flex-direction: column;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+header,
+main,
+footer {
+    padding: 3em;
+}
+
+header h1 {
+    font-family: HelveticaBold, Arial, sans-serif;
+    font-size: 4em;
+    margin-bottom: 0.5em;
+    margin-top: 0px;
+    cursor: default;
+    color: var(--text);
+}
+
+header p {
+    font-family: HelveticaLight, Arial, sans-serif;
+    font-size: 1.5em;
+    margin: 0.1em;
+    cursor: default;
+    color: var(--text);
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+    font-family: HelveticaLight, Arial, sans-serif;
+    display: flex;
+    justify-content: space-between;
+}
+
+.copyright {
+    cursor: default;
+    color: var(--text);
+}
+
+.socials a {
+    color: var(--text);
+    text-decoration: none;
+}
+
+.socials a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 1200px) {
+    header h1 {
+        font-size: 3em;
+    }
+
+    header p {
+        font-size: 1.25em;
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        padding-bottom: 0px;
+    }
+
+    header h1 {
+        font-size: 2em;
+    }
+
+    header p {
+        font-size: 1em;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 0.5em;
+        font-size: 1.25em;
+    }
+}
