@@ -1,11 +1,11 @@
 @font-face {
     font-family: HelveticaBold;
-    src: url(font/Helvetica-Bold.ttf);
+    src: url(/font/Helvetica-Bold.ttf);
 }
 
 @font-face {
     font-family: HelveticaLight;
-    src: url(font/Helvetica-Light.ttf);
+    src: url(/font/Helvetica-Light.ttf);
 }
 
 :root {
@@ -15,6 +15,7 @@
     --link-hover: #000;
     --link-before: rgba(0, 0, 0, 0);
     --link-before-hover: rgba(0, 0, 0, 0.6);
+    --gray: rgba(0, 0, 0, 0.2);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -25,6 +26,7 @@
         --link-hover: #fff;
         --link-before: rgba(255, 255, 255, 0);
         --link-before-hover: rgba(255, 255, 255, 0.6);
+        --gray: rgba(255, 255, 255, 0.2);
     }
 }
 
@@ -38,16 +40,19 @@ body {
 
     display: flex;
     flex-direction: column;
+}
+
+header,
+footer {
+    padding: 48px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
 }
 
-header,
-main,
-footer {
-    padding: 3em;
+main {
+    padding: 0 48px;
 }
 
 header h1 {
@@ -65,6 +70,17 @@ header p {
     margin: 0.1em;
     cursor: default;
     color: var(--text);
+}
+
+header a {
+    color: var(--link);
+    transition: color 1s ease;
+    text-decoration: none;
+}
+
+header a:hover {
+    color: var(--link-hover);
+    text-decoration: underline;
 }
 
 main {

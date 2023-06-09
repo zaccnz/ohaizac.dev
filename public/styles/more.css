@@ -1,24 +1,15 @@
-header a {
-    color: var(--link);
-    transition: color 1s ease;
-    text-decoration: none;
-}
-
-header a:hover {
-    color: var(--link-hover);
-    text-decoration: underline;
-}
-
 main h1 {
     font-family: HelveticaBold, Arial, sans-serif;
     color: var(--text);
-    font-size: 2em;
+    font-size: 2.5em;
+    margin-bottom: 0px;
 }
 
 main p {
     font-family: HelveticaLight, Arial, sans-serif;
     color: var(--text);
     font-size: 1.5em;
+    margin-block-start: 0.5em;
 }
 
 main a {

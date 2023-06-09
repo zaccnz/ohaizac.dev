@@ -4,7 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="/styles/theme.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
     {% block head %}{% endblock %}
 </head>
 
@@ -17,8 +21,8 @@
     </main>
     <footer>
         <span class="socials">
-            <a href="https://notes.ohaizac.dev" onclick="alert('Under Construction ⚠️');">notes</a>
-            <a href="https://card.ohaizac.dev" onclick="alert('Under Construction ⚠️')">card</a>
+            <a href="https://notes.ohaizac.dev" onclick="alert('Under Construction ⚠️');return false;">notes</a>
+            <a href="https://card.ohaizac.dev" onclick="alert('Under Construction ⚠️');return false;">card</a>
             <a href="https://github.com/zaccnz/">github</a>
             <a href="https://www.linkedin.com/in/zac-cleveland">linkedin</a>
         </span>
@@ -26,6 +30,7 @@
             2023
         </span>
     </footer>
+    {% block scripts %}{% endblock %}
 </body>
 
 </html>

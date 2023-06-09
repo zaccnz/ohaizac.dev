@@ -1,28 +1,66 @@
-use futures::future;
-use ohaizac_dev::handle_rejection;
-use warp::Filter;
+use actix_web::{
+    dev,
+    http::header,
+    middleware::{self, ErrorHandlerResponse},
+    web, App, HttpServer,
+};
+use std::io::{Error, ErrorKind};
 
-#[tokio::main]
-async fn main() {
-    let index = warp::path::end().and(warp::fs::file("./pages/index.html"));
-    let about = warp::path!("about").and(warp::fs::file("./pages/about.html"));
-    let contact = warp::path!("contact").and(warp::fs::file("./pages/contact.html"));
-    let projects = warp::path!("projects").and(warp::fs::file("./pages/projects.html"));
-    let more = warp::path!("...").and(warp::fs::file("./pages/more.html"));
+use ohaizac_dev::{
+    routes::*,
+    templates::{Error as ErrorPage, Projects},
+    AppState,
+};
 
-    let public = warp::any().and(warp::fs::dir("./public/"));
+fn error_handler<B>(res: dev::ServiceResponse<B>) -> actix_web::Result<ErrorHandlerResponse<B>> {
+    let (req, res) = res.into_parts();
+    let status = res.status();
 
-    let router = warp::any()
-        .and(index.or(about).or(contact).or(projects).or(more))
-        .or(public)
-        .recover(handle_rejection);
+    let mut res = res
+        .set_body(
+            ErrorPage {
+                title: status
+                    .canonical_reason()
+                    .map(|s| s.to_string().to_ascii_lowercase())
+                    .unwrap_or("unknown error".to_string()),
+                code: status.as_u16(),
+                description: "oops!".to_string(),
+            }
+            .to_string(),
+        )
+        .map_into_boxed_body();
 
-    let main = warp::serve(router).run(([127, 0, 0, 1], 3030));
+    res.headers_mut().insert(
+        header::CONTENT_TYPE,
+        header::HeaderValue::from_static("text/html"),
+    );
 
-    let index = warp::path::end().and(warp::fs::file("./pages/card.html"));
-    let public = warp::any().and(warp::fs::dir("./public/"));
+    let res = dev::ServiceResponse::new(req, res).map_into_right_body();
+    Ok(ErrorHandlerResponse::Response(res))
+}
 
-    let card = warp::serve(index.or(public)).run(([127, 0, 0, 1], 3031));
+#[actix_web::main]
+async fn main() -> std::io::Result<()> {
+    let proj: Projects = match toml::from_str(include_str!("projects.toml")) {
+        Ok(proj) => proj,
+        Err(error) => return Err(Error::new(ErrorKind::InvalidData, error)),
+    };
 
-    future::join(main, card).await;
+    HttpServer::new(move || {
+        App::new()
+            .wrap(middleware::NormalizePath::default())
+            .wrap(middleware::ErrorHandlers::new().default_handler(error_handler))
+            .app_data(web::Data::new(AppState {
+                projects: proj.clone(),
+            }))
+            .service(index)
+            .service(about)
+            .service(contact)
+            .service(projects)
+            .service(more)
+            .service(actix_files::Files::new("/", "./public/"))
+    })
+    .bind(("127.0.0.1", 3030))?
+    .run()
+    .await
 }

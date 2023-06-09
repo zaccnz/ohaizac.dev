@@ -1,46 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "template/page.html" %}
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="theme.css">
-    <link rel="stylesheet" href="index.css">
-    <title>zac cleveland</title>
-</head>
+{% block head %}
+<link rel="stylesheet" href="/styles/index.css">
+<title>zac cleveland</title>
+<meta name="description"
+    content="👋 I'm Zac Cleveland, a software developer from Auckland, New Zealand 🇳🇿.  Interested in Programming, Binary Security and Algorithms.  Enjoy programming in Rust, TypeScript and C.">
+{% endblock %}
 
-<body>
-    <header>
-        <div>
-            <h1>👋 zac cleveland</h1>
-            <p>🇳🇿 from Auckland, New Zealand</p>
-            <p>💡 programming, binary security, and algorithms</p>
-            <p>🧑🏼‍🏫 BSc (Computer Science and Maths) 2022</p>
-            <p>🎓 University of Auckland</p>
-            <p>🛠️ Rust, TypeScript and C</p>
-        </div>
-        <div>
-            <img src="zac.jpg" alt="A picture of me in Palermo, Italy 🇮🇹"
-                title="A picture of me in Palermo, Italy 🇮🇹">
-        </div>
-    </header>
-    <main>
-        <div><a href="/about">about</a></div>
-        <div><a href="/contact">contact</a></div>
-        <div><a href="/projects">projects</a></div>
-        <div><a href="/..." title="more">...</a></div>
-    </main>
-    <footer>
-        <span class="socials">
-            <a href="https://notes.ohaizac.dev" onclick="alert('Under Construction ⚠️');">notes</a>
-            <a href="https://card.ohaizac.dev" onclick="alert('Under Construction ⚠️')">card</a>
-            <a href="https://github.com/zaccnz/">github</a>
-            <a href="https://www.linkedin.com/in/zac-cleveland">linkedin</a>
-        </span>
-        <span class="copyright">
-            2023
-        </span>
-    </footer>
-</body>
+{% block header %}
+<div>
+    <h1>👋 zac cleveland</h1>
+    <p>🇳🇿 from Auckland, New Zealand</p>
+    <p>💡 programming, binary security, and algorithms</p>
+    <p>🧑🏼‍🏫 BSc (Computer Science and Maths) 2022</p>
+    <p>🎓 University of Auckland</p>
+    <p>🛠️ Rust, TypeScript and C</p>
+</div>
+<div>
+    <img src="zac2.jpg" alt="A picture of me in Marseille, France 🇫🇷"
+        title="A picture of me in Marseille, France 🇫🇷">
+</div>
+{% endblock %}
 
-</html>
+{% block main %}
+<div><a href="/about">about</a></div>
+<div><a href="/contact">contact</a></div>
+<div><a href="/projects">projects</a></div>
+<div><a href="/Zac Cleveland CV.pdf" target="_blank">cv</a></div>
+<div><a href="/..." title="more">...</a></div>
+{% endblock %}

@@ -6,8 +6,8 @@ header {
 
 header img {
     border-radius: 50%;
-    width: 12em;
-    height: 12em;
+    width: 18em;
+    height: 18em;
     object-fit: cover;
     object-position: right top;
     vertical-align: middle;
@@ -45,6 +45,11 @@ main a:hover::before {
 @media (max-width: 1200px) {
     main a {
         font-size: 2.5em;
+    }
+
+    header img {
+        width: 12em;
+        height: 12em;
     }
 }
 

@@ -1,56 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "template/page.html" %}
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="theme.css">
-    <link rel="stylesheet" href="projects.css">
-    <title>projects | zac cleveland</title>
-</head>
+{% block head %}
+<link rel="stylesheet" href="/styles/projects.css">
+<title>projects - zac cleveland</title>
+{% endblock %}
 
-<body>
-    <header>
-        <h1>/projects</h1>
-        <p><a href="/">go back</a></p>
-    </header>
-    <main>
-        <div class="project">
-            <h1>mediasync</h1>
-            <p>watch videos together, online</p>
-        </div>
-        <div class="project">
-            <h1>shaderbg</h1>
-            <p>lightweight animated backgrounds</p>
-        </div>
-        <div class="project">
-            <h1>react-chess</h1>
-            <p>a simple chess game built with React</p>
-        </div>
-        <div class="project">
-            <h1>sudoku</h1>
-            <p>a simple sudoku game and solver built with React</p>
-        </div>
-        <div class="project">
-            <h1>solitaire</h1>
-            <p>solitaire built with C, Raylib and Nuklear UI</p>
-        </div>
-        <div class="project">
-            <h1>auto-dark-mode</h1>
-            <p>sync up dark theme with night light on windows 11</p>
-        </div>
-    </main>
-    <footer>
-        <span class="copyright">
-            2023
-        </span>
-        <span class="socials">
-            <a href="https://blog.ohaizac.dev" onclick="alert('Under Construction ⚠️');">blog</a>
-            <a href="https://card.ohaizac.dev" onclick="alert('Under Construction ⚠️')">card</a>
-            <a href="https://github.com/zaccnz/">github</a>
-            <a href="https://www.linkedin.com/in/zac-cleveland">linkedin</a>
-        </span>
-    </footer>
-</body>
+{% block header %}
+<h1>/projects</h1>
+<p><a href="/">go back</a></p>
+{% endblock %}
 
-</html>
+{% block main %}
+{% for project in projects %}
+<div class="project">
+    <div class="title">
+        <h1>{{ project.name }} <span class="year">({{ project.year }})</span></h1>
+        {% if project.link.is_some() %}
+        <a href="{{ project.link.as_ref().unwrap().url }}"> {{ project.link.as_ref().unwrap().text }}</a>
+        {% endif %}
+        {% if project.git.is_some() %}
+        <a href="{{ project.git.as_deref().unwrap() }}"><img class="icon icon-github" src="/icon/github-mark.svg"></a>
+        {% endif %}
+    </div>
+    {% if project.showcase.is_some() %}
+    <img class="showcase" src="{{ project.showcase.as_deref().unwrap() }}">
+    {% endif %}
+    {% if project.demo.is_some() %}
+    <iframe class="showcase" width="640" height="360" src="{{ project.demo.as_deref().unwrap() }}?mute=1"></iframe>
+    {% endif %}
+    <h3>{{ project.tag }}</h3>
+    <p><strong>{{ project.lang }}</strong></p>
+    {% if project.description.is_some() %}
+    <p>{{ project.description.as_deref().unwrap() }}</p>
+    {% endif %}
+</div>
+<hr>
+{% endfor %}
+<h3>for more projects, check out my GitHub page.</h3>
+{% endblock %}

@@ -1,60 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "template/page.html" %}
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="theme.css">
-    <link rel="stylesheet" href="more.css">
-    <title>more | zac cleveland</title>
-</head>
+{% block head %}
+<link rel="stylesheet" href="/styles/more.css">
+<title>more - zac cleveland</title>
+{% endblock %}
 
-<body>
-    <header>
-        <h1>/...</h1>
-        <p><a href="/">go back</a></p>
-    </header>
-    <main>
-        <h1>meta</h1>
-        <p>
-            the source code for this website can be found on <a href="https://github.com/zaccnz/ohaizac.dev"
-                target="_blank">github</a>. it is written using Rust, Warp, HTML, and CSS.
-        </p>
-        <!--
-        <p>
-            i use a number of subdomains on here. including (but not limited too)
-        <ul>
-            <li><a href="https://notes.ohaizac.dev">notes.ohaizac.dev</a> a collection of interesting notes ⚠️</li>
-            <li><a href="https://card.ohaizac.dev">card.ohaizac.dev</a> my virtual business card ⚠️</li>
-            <li><a href="https://play.ohaizac.dev">play.ohaizac.dev</a> i host my web games and apps here ⚠️</li>
-            <li><a href="https://play.ohaizac.dev">files.ohaizac.dev</a> public directory ⚠️</li>
-        </ul>
-        </p>
-        <p>
-            ⚠️ under construction
-        </p>
-        -->
-        <h1>ohaizac</h1>
-        <p>
-            online, I go by <code>ohaizac</code>. this was inspired by an idol of mine - the minecraft modder
-            iChun (<a href="https://twitter.com/ohaiichun?lang=en">@ohaiiChun</a>). he created many of my favourite
-            mods, such as the
-            <a href="https://ichun.me/portal-gun-is-back-heres-whats-new-and-whats-to-come/">Portal Gun</a>
-            mod. you can find me on many platforms (Steam, Instagram, Twitter, and PSN to name a few) under
-            this name.
-        </p>
-    </main>
-    <footer>
-        <span class="copyright">
-            2023
-        </span>
-        <span class="socials">
-            <a href="https://blog.ohaizac.dev" onclick="alert('Under Construction ⚠️');">blog</a>
-            <a href="https://card.ohaizac.dev" onclick="alert('Under Construction ⚠️')">card</a>
-            <a href="https://github.com/zaccnz/">github</a>
-            <a href="https://www.linkedin.com/in/zac-cleveland">linkedin</a>
-        </span>
-    </footer>
-</body>
+{% block header %}
+<h1>/...</h1>
+<p><a href="/">go back</a></p>
+{% endblock %}
 
-</html>
+{% block main %}
+<h1>meta</h1>
+<p>
+    the source code for this website can be found on <a href="https://github.com/zaccnz/ohaizac.dev"
+        target="_blank">github</a>. it is written using Rust, Warp, HTML, and CSS.
+</p>
+<!--
+<p>
+    i use a number of subdomains on here. including (but not limited too)
+<ul>
+    <li><a href="https://notes.ohaizac.dev">notes.ohaizac.dev</a> a collection of interesting notes ⚠️</li>
+    <li><a href="https://card.ohaizac.dev">card.ohaizac.dev</a> my virtual business card ⚠️</li>
+    <li><a href="https://play.ohaizac.dev">play.ohaizac.dev</a> i host my web games and apps here ⚠️</li>
+    <li><a href="https://play.ohaizac.dev">files.ohaizac.dev</a> public directory ⚠️</li>
+</ul>
+</p>
+<p>
+    ⚠️ under construction
+</p>
+-->
+<h1>ohaizac</h1>
+<p>
+    online, I go by <code>ohaizac</code>. this was inspired by an idol of mine - the minecraft modder
+    iChun (<a href="https://twitter.com/ohaiichun?lang=en">@ohaiiChun</a>). he created many of my favourite
+    mods, such as the
+    <a href="https://ichun.me/portal-gun-is-back-heres-whats-new-and-whats-to-come/">Portal Gun</a>
+    mod. you can find me on many platforms (Steam, Instagram, Twitter, and PSN to name a few) under
+    this name.
+</p>
+{% endblock %}

@@ -1,0 +1,102 @@
+[[projects]]
+name = "mediasync"
+tag = "watch videos together, online"
+year = "2023 - WIP"
+lang = "rust, typescript, solidjs"
+description = """mediasync is an extension built for Chrome, Firefox and Edge
+ that allows people to watch online video content together.  Playback can be synchronised between any number of
+ devices, anywhere in the world.  I have developed mediasync with Gabriel Belcher, a friend of mine."""
+# git = "https://github.com/zaccnz/mediasync"
+[projects.link]
+url = "https://getmediasync.com"
+text = "view demo"
+
+[[projects]]
+name = "shaderbg"
+tag = "lightweight animated backgrounds"
+lang = "rust, wgpu"
+year = "2023 - WIP"
+showcase = "https://github.com/zaccnz/shaderbg/blob/main/repo/demo.gif?raw=true"
+description = """shaderbg provides animated desktop backgrounds.
+  It is designed to be lightweight, so it will not affect your computer's performance."""
+git = "https://github.com/zaccnz/shaderbg"
+
+[[projects]]
+name = "react-chess"
+tag = "a simple chess game built with React"
+year = "2022"
+lang = "react, vite"
+showcase = "https://github.com/zaccnz/react-chess/blob/main/screenshots/first_ui.png?raw=true"
+description = "Play against a friend locally, a bot, or friend online."
+git = "https://github.com/zaccnz/react-chess"
+[projects.link]
+url = "https://zaccnz.github.io/react-chess"
+text = "play online"
+
+[[projects]]
+name = "solitaire"
+tag = "solitaire built with C, Raylib and Nuklear UI"
+year = "2022"
+lang = "C, Raylib"
+showcase = "https://github.com/zaccnz/solitaire/raw/main/repo/recording.gif"
+description = """A solitaire game for Windows, macOS, Linux and Web.  Has support for timed games, a leaderboard, animations, and multiple texture packs.
+Try it out online, or clone the repository and build the executable."""
+git = "https://github.com/zaccnz/solitaire"
+[projects.link]
+url = "https://zaccnz.github.io/solitaire"
+text = "play online"
+
+[[projects]]
+name = "sudoku"
+tag = "sudoku game and solver built with React"
+year = "2022"
+lang = "react, vite"
+showcase = "https://github.com/zaccnz/sudoku/blob/main/screenshots/game.png?raw=true"
+git = "https://github.com/zaccnz/sudoku"
+[projects.link]
+url = "https://zaccnz.github.io/sudoku"
+text = "play online"
+
+[[projects]]
+name = "auto-dark-mode"
+tag = "sync up dark theme with night light on windows 11"
+year = "2022"
+lang = "Rust"
+description = """Auto-dark-mode is an application that I created to automatically apply the dark
+ mode theme when my night light is turned on.  On Windows, you can schedule when the built in
+ blue-light filter (night light) is turned on.  I have it set to turn on at sunset every day.
+  However, you can not do the same for the dark theme.  My script solves that issue for me."""
+git = "https://github.com/zaccnz/auto_dark_mode"
+
+[[projects]]
+name = "KPI Dashboard"
+tag = "Prototype dashboard for visualizing risk factors associated with groups of people"
+year = "2017"
+lang = "HTML, CSS, JS"
+showcase = "/demo.png"
+description = """This was a prototype I worked on in 2017.  The KPI dashboard allowed for interactive visualization of
+different factors and how they affect people living in different areas.  It would generate graphs that can be inspected or
+compared, as required by the user.  It was used for presentations, which would then be used to create a knowledge management framework."""
+
+[[projects]]
+name = "basic-im"
+tag = "An instant messenger using Java sockets, with a server and client."
+year = "2015"
+lang = "Java"
+demo = "https://www.youtube.com/embed/U-mlS_T-3Kk"
+description = """This was my first time using threads, to allow the GUI to work while the socket was listening for new messages."""
+git = "https://github.com/DeadPotatoX/basic-im"
+[projects.link]
+url = "https://www.youtube.com/watch?v=U-mlS_T-3Kk"
+text = "watch demo"
+
+[[projects]]
+name = "Plasma Cannon Mod"
+tag = "Minecraft mod with a Plasma Cannon, custom crafting table and new recipes."
+year = "2013"
+lang = "Java"
+demo = "https://www.youtube.com/embed/_XQl_SOWx4E"
+description = """This is the first Minecraft mod that I felt was flashy enough to show off.  Unfortunately, I have lost the source code.  Ignore the spelling mistake at the start, I was 11 😆."""
+[projects.link]
+url = "https://www.youtube.com/watch?v=_XQl_SOWx4E"
+text = "watch demo"

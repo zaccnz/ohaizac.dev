@@ -1,0 +1,23 @@
+{% extends "template/page.html" %}
+
+{% block head %}
+<title>error {{code}} - zac cleveland</title>
+<style>
+    main h1 {
+        font-family: HelveticaBold, Arial, sans-serif;
+        color: var(--text);
+        font-size: 2em;
+    }
+</style>
+{% endblock %}
+
+{% block header %}
+<h1>an error occurred</h1>
+<p><a href="/">home</a></p>
+{% endblock %}
+
+{% block main %}
+<h1>
+    {{code}} ({{title}})
+</h1>
+{% endblock %}

@@ -1,0 +1,87 @@
+main .project {
+    margin: 1.5em 0;
+}
+
+main hr:last-of-type {
+    margin-bottom: 2.5em;
+}
+
+main .title {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    flex-wrap: wrap;
+}
+
+main h1 {
+    font-family: HelveticaBold, Arial, sans-serif;
+    color: var(--text);
+    font-size: 2em;
+    margin: 0.2em 0;
+    flex: 1;
+}
+
+main .year {
+    color: var(--gray);
+}
+
+main h3 {
+    font-family: HelveticaLight, Arial, sans-serif;
+    color: var(--text);
+    margin-top: 0.5em;
+    font-size: 1.2em;
+}
+
+main p {
+    font-family: HelveticaLight, Arial, sans-serif;
+    color: var(--text);
+    font-size: 1em;
+}
+
+main p strong {
+    font-family: HelveticaBold, Arial, sans-serif;
+}
+
+main .showcase {
+    border: 1px solid var(--text);
+    max-width: min(600px, calc(100vw - 6em));
+}
+
+main a {
+    font-family: HelveticaLight, Arial, sans-serif;
+    color: var(--link);
+    text-decoration: none;
+}
+
+main a:hover {
+    font-family: HelveticaLight, Arial, sans-serif;
+    color: var(--link-hover);
+    text-decoration: underline;
+}
+
+main .icon {
+    width: 1.5em;
+    aspect-ratio: 1 / 1;
+    filter: invert(30%);
+    vertical-align: middle;
+}
+
+main .icon:hover {
+    filter: none;
+}
+
+@media (prefers-color-scheme: dark) {
+    main .icon-github {
+        content: url(/icon/github-mark-white.svg);
+    }
+}
+
+@media (max-width: 600px) {
+    main h1 {
+        flex-basis: 100%;
+    }
+
+    main .title a {
+        align-self: center;
+    }
+}
