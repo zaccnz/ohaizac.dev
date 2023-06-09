@@ -17,5 +17,7 @@ FROM alpine:3.15
 RUN apk add --no-cache libgcc
 # copy the binary into the final image
 COPY --from=0 /app/target/release/ohaizac_dev .
+# copy public resources
+COPY --from=0 /app/public ./public
 # set the binary as entrypoint
 ENTRYPOINT ["/ohaizac_dev"]
