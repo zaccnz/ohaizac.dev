@@ -58,6 +58,7 @@ async fn main() -> std::io::Result<()> {
             .service(contact)
             .service(projects)
             .service(more)
+            .service(cv)
             .service(actix_files::Files::new("/", "./public/"))
     })
     .bind(("0.0.0.0", 3030))?
