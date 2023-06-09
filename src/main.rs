@@ -60,7 +60,7 @@ async fn main() -> std::io::Result<()> {
             .service(more)
             .service(actix_files::Files::new("/", "./public/"))
     })
-    .bind(("127.0.0.1", 3030))?
+    .bind(("0.0.0.0", 3030))?
     .run()
     .await
 }
