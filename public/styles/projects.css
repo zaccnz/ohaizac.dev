@@ -23,6 +23,7 @@ main h1 {
 
 main .year {
     color: var(--gray);
+    white-space: nowrap;
 }
 
 main h3 {
@@ -79,6 +80,10 @@ main .icon:hover {
 @media (max-width: 600px) {
     main h1 {
         flex-basis: 100%;
+    }
+
+    main .title {
+        padding-bottom: 10px;
     }
 
     main .title a {
