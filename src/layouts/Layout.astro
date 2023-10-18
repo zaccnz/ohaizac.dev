@@ -1,0 +1,89 @@
+---
+// Base layout of my website
+
+interface Props {
+	title?: string;
+}
+
+import { ViewTransitions } from 'astro:transitions';
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="description" content="Astro description" />
+      <meta name="viewport" content="width=device-width" />
+      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+      <meta name="generator" content={Astro.generator} />
+      <title>{title ? `${title} - ohaizac.dev` : 'ohaizac.dev'}</title>
+      <ViewTransitions />
+	</head>
+	<body>
+      <header>
+		<h1>zac cleveland</h1>
+      </header>
+      <main>
+	    <slot />
+	  </main>
+	  <footer>
+	   2023
+	   <ul>
+		<li>github</li>
+		<li>linkedin</li>
+	   </ul>
+	</footer>
+	</body>
+</html>
+<style is:global>
+    @font-face {
+        font-family: helvetica;
+        src: url(/helvetica.ttf);
+    }
+
+    :root {
+        --background: #fff;
+        --text: #000;
+        --link: rgba(0, 0, 0, 0.6);
+    }
+
+	@media (prefers-color-scheme: dark) {
+    	:root {
+            --background: #100f1c;
+            --text: #fff;
+            --link: rgba(255, 255, 255, 0.6);
+	    }
+	}
+
+	html {
+		font-family: helvetica, system-ui, sans-serif;
+		background: var(--background);
+	}
+    header, footer {
+	   color: var(--text);
+	}
+
+	main {
+		margin: auto;
+		padding: 1rem;
+		width: 800px;
+		max-width: calc(100% - 2rem);
+		color: var(--text);
+		font-size: 20px;
+		line-height: 1.6;
+	}
+
+	code {
+		font-family:
+			Menlo,
+			Monaco,
+			Lucida Console,
+			Liberation Mono,
+			DejaVu Sans Mono,
+			Bitstream Vera Sans Mono,
+			Courier New,
+			monospace;
+	}
+</style>

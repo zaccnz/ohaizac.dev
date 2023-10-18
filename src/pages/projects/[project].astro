@@ -1,0 +1,32 @@
+---
+// View of one project
+
+import Layout from '@layouts/Layout.astro';
+import Project from '@components/Project.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+    const projects = await getCollection('projects');
+
+    // Ensure that there are no duplicate project slugs within the years
+    const projectSlugs = projects.map(project => project.slug);
+    const splitProjectSlugs = projectSlugs.map(slug => slug.split('/')[1]);
+    for (let i = 0; i < projectSlugs.length; i++) {
+        const matchingSlug = splitProjectSlugs.indexOf(splitProjectSlugs[i]);
+        if (matchingSlug !== i) {
+            throw Error('Duplicate slug detected: ' + projectSlugs[i] + ' and ' + projectSlugs[matchingSlug]);
+        }
+    }
+
+    return projects.map(project => ({
+        params: { project: project.slug.split('/')[1] },
+        props: { project },
+    }));
+}
+
+const {project} = Astro.props;
+---
+
+<Layout>
+  <Project project={project} />
+</Layout>

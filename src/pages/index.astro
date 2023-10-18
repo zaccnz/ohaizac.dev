@@ -1,0 +1,15 @@
+---
+// Home Page
+
+import Layout from '@layouts/Layout.astro';
+import {Content as IndexContent, frontmatter as IndexData} from '@assets/index.md';
+---
+
+<Layout>
+  <IndexContent />
+  <ul>
+    {IndexData.links.map(({name, url}) => (
+      <li><a href={url}>{name}</a></li>
+    ))}
+  </ul>
+</Layout>
