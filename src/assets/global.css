@@ -1,0 +1,32 @@
+:root {
+    --background: #fafafa;
+    --text: #4b505b;
+    --link: #5079be;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #202023;
+        --text: #c5cdd9;
+        --link: #6cb6eb;
+    }
+}
+
+html,
+body {
+    font-family:
+        Consolas,
+        Menlo,
+        Monaco,
+        Lucida Console,
+        Liberation Mono,
+        DejaVu Sans Mono,
+        Bitstream Vera Sans Mono,
+        Courier New,
+        monospace;
+    background: var(--background);
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}

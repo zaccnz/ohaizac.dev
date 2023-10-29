@@ -1,15 +1,45 @@
 ---
 // Home Page
 
-import Layout from '@layouts/Layout.astro';
-import {Content as IndexContent, frontmatter as IndexData} from '@assets/index.md';
+interface Frontmatter {
+  links: { name: string; url: string }[];
+}
+
+import Layout from "@layouts/Layout.astro";
+import { Content, frontmatter } from "@assets/index.md";
 ---
 
 <Layout>
-  <IndexContent />
+  <div class="content">
+    <Content />
+  </div>
   <ul>
-    {IndexData.links.map(({name, url}) => (
-      <li><a href={url}>{name}</a></li>
-    ))}
+    {
+      (frontmatter as Frontmatter).links.map(({ name, url }) => (
+        <li>
+          <a href={url}>
+            <h1>{name}</h1>
+          </a>
+        </li>
+      ))
+    }
   </ul>
 </Layout>
+<style>
+  .content {
+    margin-bottom: 60px;
+    font-size: 1.5rem;
+    line-height: 0.4rem;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+    line-height: 20px;
+  }
+
+  li a {
+    color: var(--link);
+    text-decoration: none;
+  }
+</style>

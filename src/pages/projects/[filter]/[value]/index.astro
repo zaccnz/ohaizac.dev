@@ -3,51 +3,27 @@
 
 import Layout from '@layouts/Layout.astro';
 import ProjectList from '@components/ProjectList.astro';
-import { getCollection } from 'astro:content';
+import { getFilterValues, getFilteredProjects } from '@utils/projects';
 
 export async function getStaticPaths() {
-    const projects = await getCollection('projects');
-
-    const years = [... new Set(projects.map(entry => {
-        return entry.slug.split('/')[0];
-    }))];
-
-    const languages = [... new Set(projects.map(entry => {
-        return entry.data.languages.map(v => v.toLowerCase());
-    }).flat())];
-
-    const tags = [... new Set(projects.map(entry => {
-        return entry.data.tags.map(v => v.toLowerCase());
-    }).flat())];
+    const generatePath = async (filter) => {
+        return (await getFilterValues(filter)).map(value => ({
+            params: { filter, value }
+        }));
+    };
 
     return [
-        ...years.map(year => ({
-            params: { filter: 'year', value: year }
-        })),
-        ...languages.map(lang => ({
-            params: { filter: 'lang', value: lang }
-        })),
-        ...tags.map(tag => ({
-            params: { filter: 'tag', value: tag }
-        })),
+        ... (await generatePath('year')),
+        ... (await generatePath('tag')),
+        ... (await generatePath('lang')),
     ];
 }
 
-const filteredProjects = await getCollection('projects', ({ id, data }) => {
-    switch (Astro.params.filter) {
-    case 'year':
-        return id.startsWith(Astro.params.value + '/');
-    case 'lang':
-        return data.languages.map(v => v.toLowerCase()).includes(Astro.params.value);
-    case 'tag':
-        return data.tags.map(v => v.toLowerCase()).includes(Astro.params.value);
-    default:
-        throw Error('Unknown filter ' + Astro.params.filter);
-    }
-});
+const { filter, value } = Astro.params;
+const filteredProjects = await getFilteredProjects(filter, value);
 ---
 
 <Layout>
-    <h1>projects by {Astro.params.filter}: {Astro.params.value}</h1>
+    <h1>projects by {filter}: {value}</h1>
     <ProjectList projects={filteredProjects} />
 </Layout>

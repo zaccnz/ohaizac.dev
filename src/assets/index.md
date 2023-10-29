@@ -12,12 +12,12 @@ links:
     url: "/more"
 ---
 
-🇳🇿 from Auckland, New Zealand
-
-💡 programming, binary security, and algorithms
+💡 Software Developer
 
 🧑🏼‍🏫 BSc (Computer Science and Mathematics)
 
-🎓 University of Auckland (2022 grad)
+🎓 <span title="2023 Grad">University of Auckland</span>
 
 🛠️ Rust, TypeScript and C
+
+🇳🇿 New Zealand

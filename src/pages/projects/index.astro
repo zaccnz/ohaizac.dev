@@ -12,5 +12,7 @@ const featuredProjects = allProjects.filter(project => project.data.featured !==
 ---
 
 <Layout>
+  <h1>featured projects</h1>
   <ProjectList projects={featuredProjects} />
+  <p><a href="/projects/all">view more</a></p>
 </Layout>

@@ -35,7 +35,7 @@ To me, the best part of programming is the problem solving. I find it engaging t
 - Howick Rotary Scholarship ($1000) - Howick College (2014)
 - NCEA Excellence Endorsement - Howick College (2017, 2018, 2019)
 - NCEA Scholarship Chemistry - Howick College (2019)
-- Certificate of Distinction: COMPSCI 110, 120, MATHS 120, 130, PHYSICS 140, - - STATS 101 - University of Auckland (2020)
+- Certificate of Distinction: COMPSCI 110, 120, MATHS 120, 130, PHYSICS 140, STATS 101 - University of Auckland (2020)
 - First in Course Award: COMPSCI 210, 215, MATHS 162 - University of Auckland (2021)
 - Certificate of Outstanding Achievement: COMPSCI 220, 225, 230 - University of Auckland (2021)
 - Certificate of Outstanding Achievement: COMPSCI 373 - University of Auckland (2022)

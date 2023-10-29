@@ -5,85 +5,130 @@ interface Props {
 	title?: string;
 }
 
-import { ViewTransitions } from 'astro:transitions';
+import { ViewTransitions } from "astro:transitions";
+import { getDateString, getTimezoneString } from "@utils/date";
+import { footer_links } from "@assets/layout.json";
+import "@assets/global.css";
 
 const { title } = Astro.props;
+
+const breadcrumbs = Astro.url.pathname
+	.split("/")
+	.filter((value) => value !== "");
+
+const crumbUrl = (index: number) =>
+	"/" + breadcrumbs.slice(0, index + 1).join("/");
 ---
 
 <!doctype html>
 <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="description" content="Astro description" />
-      <meta name="viewport" content="width=device-width" />
-      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-      <meta name="generator" content={Astro.generator} />
-      <title>{title ? `${title} - ohaizac.dev` : 'ohaizac.dev'}</title>
-      <ViewTransitions />
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title ? `${title} - ohaizac.dev` : "ohaizac.dev"}</title>
+		<ViewTransitions />
 	</head>
 	<body>
-      <header>
-		<h1>zac cleveland</h1>
-      </header>
-      <main>
-	    <slot />
-	  </main>
-	  <footer>
-	   2023
-	   <ul>
-		<li>github</li>
-		<li>linkedin</li>
-	   </ul>
-	</footer>
+		<header>
+			<h1>Zac Cleveland</h1>
+			<h2>
+				<a href={(breadcrumbs.length > 0 && "/") || null}>ohaizac.dev</a
+				><span class="breadcrumbs">
+					{
+						breadcrumbs.length > 0 &&
+							breadcrumbs.map((crumb, i) => (
+								<span>
+									{i < breadcrumbs.length - 1 ? (
+										<a href={crumbUrl(i)}>{crumb}</a>
+									) : (
+										<>{crumb}</>
+									)}
+								</span>
+							))
+					}
+				</span>
+			</h2>
+		</header>
+
+		<main>
+			<slot />
+		</main>
+		<footer>
+			<ul>
+				{
+					footer_links.map(({ title, url }) => (
+						<li>
+							<a href={url}>{title}</a>
+						</li>
+					))
+				}
+			</ul>
+			<p>
+				generated <span title={getTimezoneString()}
+					>{getDateString()}</span
+				>
+			</p>
+		</footer>
+		<style>
+			header,
+			footer {
+				color: var(--text);
+				padding: 2rem;
+			}
+
+			header h1 {
+				font-size: 3.5em;
+				margin: 1rem 0;
+			}
+
+			header h2 {
+				font-size: 2em;
+				margin: 0;
+			}
+
+			footer {
+				display: flex;
+				flex-direction: row;
+			}
+
+			footer a {
+				color: var(--link);
+			}
+
+			footer ul {
+				flex: 1;
+				padding-left: 0;
+			}
+
+			footer li {
+				display: inline;
+				margin-right: 1rem;
+			}
+
+			header a[href] {
+				color: var(--link);
+			}
+
+			main {
+				padding: 0rem 2rem;
+				color: var(--text);
+				font-size: 20px;
+				line-height: 1.6;
+				flex: 1;
+			}
+
+			.breadcrumbs > span:not(last-child)::before {
+				content: "/";
+			}
+
+			body {
+				display: flex;
+				flex-direction: column;
+				height: 100%;
+			}
+		</style>
 	</body>
 </html>
-<style is:global>
-    @font-face {
-        font-family: helvetica;
-        src: url(/helvetica.ttf);
-    }
-
-    :root {
-        --background: #fff;
-        --text: #000;
-        --link: rgba(0, 0, 0, 0.6);
-    }
-
-	@media (prefers-color-scheme: dark) {
-    	:root {
-            --background: #100f1c;
-            --text: #fff;
-            --link: rgba(255, 255, 255, 0.6);
-	    }
-	}
-
-	html {
-		font-family: helvetica, system-ui, sans-serif;
-		background: var(--background);
-	}
-    header, footer {
-	   color: var(--text);
-	}
-
-	main {
-		margin: auto;
-		padding: 1rem;
-		width: 800px;
-		max-width: calc(100% - 2rem);
-		color: var(--text);
-		font-size: 20px;
-		line-height: 1.6;
-	}
-
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
-</style>

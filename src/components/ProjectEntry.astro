@@ -13,7 +13,7 @@ const { Content } = await project.render();
 
 <div class="project">
     <div>
-        <h1>{project.data.name} - <a href={`/projects/year/${project.data.year}`}>{project.data.year}</a></h1>
+        <h1>{project.data.name}{' '}<a href={`/projects/year/${project.data.year}`}>{project.data.year}</a></h1>
         <h3>{project.data.tagline}</h3>
         { project.data.links && (
         <div>
@@ -56,6 +56,19 @@ const { Content } = await project.render();
     </div>
 </div>
 <style>
+    .project {
+        background-color: #e8ebf0;
+        padding: 1.5rem;
+    }
+
+    .project h1 {
+        margin: 0;
+    }
+
+    .project h3 {
+        margin: 0;
+    }
+
 	.link-list span:not(:last-child)::after {
 	   content: ", ";
 	}
