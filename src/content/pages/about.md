@@ -2,7 +2,7 @@
 title: 'about'
 ---
 
-Hi 👋. I am Zac Cleveland, a 21 year old programmer from Auckland, New Zealand. Writing code has been a hobby of mine for the past 10 years. It started with writing Minecraft mods in Java (for example, this mod from 2013). After learning Java, I was hooked. A few years later, it was obvious to me that programming was what I wanted to do for a living. Next, was learning C and C++ to create games, HTML, CSS and JS to create websites, and Python for writing scripts in school. Since then, I have learned and toyed with many more programming languages.
+Hi 👋. I am Zac Cleveland, a 21 year old programmer living in Auckland, New Zealand. Writing code has been a hobby of mine for the past 10 years. It started with writing Minecraft mods in Java (for example, this mod from 2013). After learning Java, I was hooked. A few years later, it was obvious to me that programming was what I wanted to do for a living. Next, was learning C and C++ to create games, HTML, CSS and JS to create websites, and Python for writing scripts in school. Since then, I have learned and toyed with many more programming languages.
 
 At university, I studied a Bachelor of Science at the University of Auckland (2020-2022). This was a double major, majoring in both Computer Science and Mathematics. Computer Science for my career, and Mathematics for the challenge. My spare time was consumed by learning Rust, React, and TypeScript. Well, that and playing Counter Strike with my mates ;)
 

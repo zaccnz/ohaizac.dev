@@ -1,16 +1,16 @@
 ---
 // Generates an HTML page for all of the src/content/pages/*.md files
 
-import { getCollection } from 'astro:content';
-import Layout from '@layouts/Layout.astro';
+import { getCollection } from "astro:content";
+import Layout from "@layouts/Layout.astro";
 
 export async function getStaticPaths() {
-  const pages = await getCollection('pages');
+  const pages = await getCollection("pages");
   return pages.map((page) => {
     return {
-        params: { page: page.slug },
-        props: { page },
-    }
+      params: { page: page.slug },
+      props: { page },
+    };
   });
 }
 
@@ -18,6 +18,6 @@ const { page } = Astro.props;
 const { Content } = await page.render();
 ---
 
-<Layout title={page.data.title} breadcrumbs={[{name: page.data.title}]}>
+<Layout title={page.data.title}>
   <Content />
 </Layout>

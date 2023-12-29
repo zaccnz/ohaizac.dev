@@ -1,6 +1,7 @@
 ---
 name: "mediasync"
 tagline: "(WIP) watch videos together, online"
+description: "a browser extension for syncing media across browsers.  watch videos on any website together with synchronized playback."
 links:
     demo: "https://getmediasync.com"
 languages:

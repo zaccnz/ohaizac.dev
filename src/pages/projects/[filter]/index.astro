@@ -1,28 +1,30 @@
 ---
 // View a list of all filter values
 
-import Layout from '@layouts/Layout.astro';
-import ProjectList from '@components/ProjectList.astro';
-import { getFilterValues, getFilteredProjects } from '@utils/projects';
+import Layout from "@layouts/Layout.astro";
+import { getFilterValues, isFilter } from "@utils/projects";
 
 export async function getStaticPaths() {
     return [
-        { params: { filter: 'year' } },
-        { params: { filter: 'tag' } },
-        { params: { filter: 'lang' } },
+        { params: { filter: "year" } },
+        { params: { filter: "tag" } },
+        { params: { filter: "lang" } },
     ];
 }
 
 const { filter } = Astro.params;
-const filterValues = await getFilterValues(filter);
+const filterValues = isFilter(filter) ? await getFilterValues(filter) : [];
 ---
 
 <Layout>
     <h1>projects by {filter}</h1>
     <ul>
-        { filterValues.map(value => (
-            <li><a href={`/projects/${filter}/${value}`}>{value}</a></li>
-        ))}
+        {
+            filterValues.map((value) => (
+                <li>
+                    <a href={`/projects/${filter}/${value}`}>{value}</a>
+                </li>
+            ))
+        }
     </ul>
-
 </Layout>

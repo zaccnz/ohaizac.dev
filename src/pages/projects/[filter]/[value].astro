@@ -1,0 +1,36 @@
+---
+// View a filtered list of projects
+
+import Layout from "@layouts/Layout.astro";
+import ProjectList from "@components/ProjectList.astro";
+import {
+    getFilterValues,
+    getFilteredProjects,
+    type Filter,
+    isFilter,
+} from "@utils/projects";
+
+export async function getStaticPaths() {
+    const generatePath = async (filter: Filter) => {
+        return (await getFilterValues(filter)).map((value) => ({
+            params: { filter, value },
+        }));
+    };
+
+    return [
+        ...(await generatePath("year")),
+        ...(await generatePath("tag")),
+        ...(await generatePath("lang")),
+    ];
+}
+
+const { filter, value } = Astro.params;
+const filteredProjects = isFilter(filter)
+    ? await getFilteredProjects(filter, value ?? "")
+    : [];
+---
+
+<Layout>
+    <h1>projects by {filter}: {value}</h1>
+    <ProjectList projects={filteredProjects} />
+</Layout>

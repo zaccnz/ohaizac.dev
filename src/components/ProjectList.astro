@@ -1,25 +1,16 @@
 ---
 // Component that renders (and optionally sorts) a list of projects
 
-import type { CollectionEntry } from 'astro:content';
-import ProjectEntry from '@components/ProjectEntry.astro';
+import type { CollectionEntry } from "astro:content";
+import ProjectEntry from "@components/ProjectEntry.astro";
 
 interface Props {
-	projects: CollectionEntry<'project'>[];
-	sort?: boolean;
+    projects: CollectionEntry<"projects">[];
 }
 
-const { projects, sort } = Astro.props;
-
-if (sort) {
-    // sort projects... somehow
-}
+const { projects } = Astro.props;
 ---
 
 <div>
-{
-    projects.map(project => (
-        <ProjectEntry project={project} />
-    ))
-}
+    {projects.map((project) => <ProjectEntry project={project} />)}
 </div>

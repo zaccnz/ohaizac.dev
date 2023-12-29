@@ -2,63 +2,80 @@
 // Component that shows one project in a list
 // Currently the same as Project.astro
 
-import type {CollectionEntry } from 'astro:content';
+import type { CollectionEntry } from "astro:content";
+import LinkList from "@components/LinkList.astro";
 interface Props {
-	project: CollectionEntry<'project'>;
+    project: CollectionEntry<"projects">;
 }
 
 const { project } = Astro.props;
-const { Content } = await project.render();
+
+let links: { name: string; url: string }[] | undefined = undefined;
+if (project.data.links) {
+    let projectLinks = project.data.links;
+    links = [
+        projectLinks.github && { name: "github", url: projectLinks.github },
+        projectLinks.demo && { name: "demo", url: projectLinks.demo },
+        projectLinks.homepage && { name: "home", url: projectLinks.homepage },
+    ].filter((value) => value !== undefined) as { name: string; url: string }[];
+}
+
+if (project.data.demo && project.data.demo.includes("youtube.com")) {
+    const youtubeUrl = project.data.demo.split("/").pop();
+    project.data.image = `https://i3.ytimg.com/vi/${youtubeUrl}/maxresdefault.jpg`;
+}
 ---
 
 <div class="project">
-    <div>
-        <h1>{project.data.name}{' '}<a href={`/projects/year/${project.data.year}`}>{project.data.year}</a></h1>
+    <div class="project-title">
+        <h1>
+            <a href={`/projects/${project.slug.split("/").pop()}`}
+                >{project.data.name}</a
+            >{" "}{project.data.year}
+        </h1>
         <h3>{project.data.tagline}</h3>
-        { project.data.links && (
-        <div>
-            { project.data.links.github && (<a href={project.data.links.github}>git</a>) }
-            { project.data.links.demo && (<a href={project.data.links.demo}>demo</a>) }
-            { project.data.links.homepage && (<a href={project.data.links.homepage}>homepage</a>) }
-        </div>
-        )}
-    </div>
-    <div>
-        <Content />
     </div>
     {
-        project.data.image && (<div>
-            <img src={project.data.image}>
-        </div>)
+        project.data.image && (
+            <img class="project-demo" src={project.data.image} />
+        )
     }
-    {
-        project.data.demo && (<div>
-            <iframe class="showcase" width="640" height="360" src={project.data.demo + "?mute=1"}></iframe>
-        </div>)
-    }
-    <div>
-        <p class="link-list">
-            languages:
-            {
-                project.data.languages.map(language => (
-                    <span><a href={`/projects/lang/${language.toLowerCase()}`}>{language}</a></span>
-                ))
-            }
-        </p>
-        <p class="link-list">
-            tags:
-            {
-                project.data.tags.map(tag => (
-                    <span><a href={`/projects/tag/${tag.toLowerCase()}`}>{tag}</a></span>
-                ))
-            }
-        </p>
+    <div class="project-description">
+        <p>{project.data.description}</p>
     </div>
 </div>
+
 <style>
     .project {
-        background-color: #e8ebf0;
+        background-color: var(--bg-1);
         padding: 1.5rem;
+        display: grid;
+        gap: 20px;
+        min-height: 200px;
+        border-radius: 25px;
+
+        grid-template:
+            "title demo" auto
+            "description demo" auto / auto 320px;
+    }
+
+    .project:not(:is(:first-child)) {
+        margin-top: 20px;
+    }
+
+    .project-title {
+        grid-area: title;
+    }
+
+    .project-demo {
+        grid-area: demo;
+        width: 320px;
+        height: 200px;
+        object-fit: contain;
+    }
+
+    .project-description {
+        grid-area: description;
     }
 
     .project h1 {
@@ -69,7 +86,12 @@ const { Content } = await project.render();
         margin: 0;
     }
 
-	.link-list span:not(:last-child)::after {
-	   content: ", ";
-	}
+    @media only screen and (max-width: 800px) {
+        .project {
+            grid-template:
+                "title" auto
+                "demo" auto
+                "description" auto / auto;
+        }
+    }
 </style>

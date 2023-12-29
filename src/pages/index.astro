@@ -6,40 +6,56 @@ interface Frontmatter {
 }
 
 import Layout from "@layouts/Layout.astro";
-import { Content, frontmatter } from "@assets/index.md";
 ---
 
 <Layout>
   <div class="content">
-    <Content />
+    <h1>zac cleveland</h1>
+    <p>21 yr old software developer from new zealand.</p>
+    <p>bsc (compsci and mathematics) 2022 from the university of auckland.</p>
   </div>
-  <ul>
-    {
-      (frontmatter as Frontmatter).links.map(({ name, url }) => (
-        <li>
-          <a href={url}>
-            <h1>{name}</h1>
-          </a>
-        </li>
-      ))
-    }
-  </ul>
+  <div>
+    <ul>
+      <li><a href="/about">about</a></li>
+      <li><a href="/projects">projects</a></li>
+      <li><a href="/cv.pdf">cv</a></li>
+      <li><a href="/more">more</a></li>
+    </ul>
+  </div>
 </Layout>
 <style>
   .content {
     margin-bottom: 60px;
     font-size: 1.5rem;
-    line-height: 0.4rem;
+  }
+
+  .content h1 {
+    font-size: 3em;
+    margin: 0;
+  }
+
+  .content p {
+    margin: 0.2em 0;
+  }
+
+  .content img {
+    width: 2em;
+    transform: translateY(35%);
   }
 
   ul {
     list-style: none;
     padding-left: 0;
-    line-height: 20px;
+    font-size: 2em;
+    line-height: 3rem;
+  }
+
+  li {
+    margin: 0;
   }
 
   li a {
-    color: var(--link);
+    color: var(--accent-0);
     text-decoration: none;
   }
 </style>

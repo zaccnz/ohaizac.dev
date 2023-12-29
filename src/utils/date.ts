@@ -1,7 +1,7 @@
 export const padLeft = (value: number, count = 2) => value.toString().padStart(count, '0');
 
 export const getDateString = (date = new Date()) => `\
-${date.getFullYear()}.${date.getMonth()}.${date.getDay()}\
+${date.getFullYear() - 2000}.${date.getMonth()}.${date.getDay()}\
 /${padLeft(date.getHours())}:${padLeft(date.getMinutes())}:${padLeft(date.getSeconds())}\
 .${padLeft(date.getMilliseconds(), 3)}`;
 
