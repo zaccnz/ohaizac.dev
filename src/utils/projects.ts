@@ -6,7 +6,7 @@ export type Filter = 'year' | 'lang' | 'tag';
 export const isFilter = (filter: string | undefined): filter is Filter => {
     if (!filter)
         return false;
-    if (filter in ['year', 'lang', 'tag'])
+    if (['year', 'lang', 'tag'].includes(filter))
         return true;
     return false;
 }
