@@ -5,6 +5,7 @@ import Layout from "@layouts/Layout.astro";
 import ProjectList from "@components/ProjectList.astro";
 import { getCollection } from "astro:content";
 const allProjects = await getCollection("projects");
+allProjects.sort((a, b) => parseInt(b.data.year) - parseInt(a.data.year));
 ---
 
 <Layout>

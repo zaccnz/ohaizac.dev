@@ -12,8 +12,8 @@ import {
 
 export async function getStaticPaths() {
     const generatePath = async (filter: Filter) => {
-        return (await getFilterValues(filter)).map((value) => ({
-            params: { filter, value },
+        return (await getFilterValues(filter)).map((entry) => ({
+            params: { filter, value: entry.value },
         }));
     };
 
@@ -26,11 +26,11 @@ export async function getStaticPaths() {
 
 const { filter, value } = Astro.params;
 const filteredProjects = isFilter(filter)
-    ? await getFilteredProjects(filter, value ?? "")
+    ? await getFilteredProjects(filter, value)
     : [];
 ---
 
 <Layout>
-    <h1>projects by {filter}: {value}</h1>
+    <h3>projects by {filter}: {value}</h3>
     <ProjectList projects={filteredProjects} />
 </Layout>

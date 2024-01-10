@@ -11,17 +11,28 @@ export const isFilter = (filter: string | undefined): filter is Filter => {
     return false;
 }
 
-export const getFilterValues = async (filter: Filter): Promise<string[]> => {
+type FilterValue = { value: string, count: number }
+
+export const getFilterValues = async (filter: Filter): Promise<FilterValue[]> => {
     const projects = await getCollection('projects');
 
-    const values = [... new Set(projects.map(entry => {
+    const values = projects.map(entry => {
         switch (filter) {
             case 'year': return entry.data.year;
             case 'tag': return entry.data.tags.map(v => v.toLowerCase());
             case 'lang': return entry.data.languages.map(v => v.toLowerCase());
         }
-    }).flat())];
-    return values;
+    }).flat();
+    return Object.entries(values.reduce((accum, cur, i) => {
+        if (cur in accum) {
+            accum[cur] += 1;
+        } else {
+            accum[cur] = 1;
+        }
+        return accum;
+    }, {} as Record<string, number>)).map(([value, count]) => {
+        return { value, count }
+    });
 }
 
 export const getFilteredProjects = async (filter: Filter, value: string): Promise<CollectionEntry<'projects'>[]> => {

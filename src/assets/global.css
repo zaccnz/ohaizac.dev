@@ -1,3 +1,4 @@
+/* COLOUR PALETTE (stolen from https://secret.club) */
 :root {
     --bg-0: #121212;
     --bg-1: rgba(255, 255, 255, 5%);
@@ -18,18 +19,9 @@
     }
 }
 
+/* GLOBAL STYLES */
 html,
 body {
-    font-family:
-        Consolas,
-        Menlo,
-        Monaco,
-        Lucida Console,
-        Liberation Mono,
-        DejaVu Sans Mono,
-        Bitstream Vera Sans Mono,
-        Courier New,
-        monospace;
     background: var(--bg-0);
     margin: 0;
     padding: 0;
@@ -37,10 +29,101 @@ body {
     height: 100%;
 }
 
+/* COLOURS */
 a {
     color: var(--accent-0);
 }
 
 a:hover {
     color: var(--accent-1);
+}
+
+iframe {
+    border-color: var(--accent-0);
+}
+
+/* FONTS */
+@font-face {
+    font-family: 'Cousine';
+    src: url('/Cousine/Cousine-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Cousine-Bold';
+    src: url('/Cousine/Cousine-Bold.ttf');
+}
+
+/* SET FONTS AND SIZES */
+h1 {
+    font-size: 4rem;
+    font-family: 'Cousine-Bold';
+}
+
+h2 {
+    font-size: 3rem;
+    font-family: 'Cousine';
+}
+
+h3 {
+    font-size: 2rem;
+    font-family: 'Cousine';
+}
+
+
+p {
+    font-size: 1.2rem;
+    font-family: 'Cousine';
+}
+
+li {
+    font-size: 1.2rem;
+    font-family: 'Cousine';
+}
+
+/* MAKE FONT SIZE RESPONSIVE */
+html {
+    font-size: 125%;
+}
+
+@media only screen and (max-width: 1500px) {
+    html {
+        font-size: 105%;
+    }
+}
+
+@media only screen and (max-width: 1100px) {
+    html {
+        font-size: 90%;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    html {
+        font-size: 80%;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    html {
+        font-size: 60%;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    html {
+        font-size: 50%;
+    }
+}
+
+
+@media only screen and (max-width: 320px) {
+    html {
+        font-size: 35%;
+    }
+}
+
+@media only screen and (max-width: 240px) {
+    html {
+        font-size: 30%;
+    }
 }

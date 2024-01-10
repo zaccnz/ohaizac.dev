@@ -3,6 +3,7 @@
 // Currently the same as Project.astro
 
 import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
 import LinkList from "@components/LinkList.astro";
 interface Props {
     project: CollectionEntry<"projects">;
@@ -19,26 +20,46 @@ if (project.data.links) {
         projectLinks.homepage && { name: "home", url: projectLinks.homepage },
     ].filter((value) => value !== undefined) as { name: string; url: string }[];
 }
-
-if (project.data.demo && project.data.demo.includes("youtube.com")) {
-    const youtubeUrl = project.data.demo.split("/").pop();
-    project.data.image = `https://i3.ytimg.com/vi/${youtubeUrl}/maxresdefault.jpg`;
-}
 ---
 
 <div class="project">
     <div class="project-title">
-        <h1>
+        <h2>
             <a href={`/projects/${project.slug.split("/").pop()}`}
                 >{project.data.name}</a
             >{" "}{project.data.year}
-        </h1>
+        </h2>
         <h3>{project.data.tagline}</h3>
     </div>
     {
-        project.data.image && (
-            <img class="project-demo" src={project.data.image} />
-        )
+        (project.data.demo && (
+            <iframe
+                class="project-demo"
+                width="320"
+                height="200"
+                src={project.data.demo + "?mute=1"}
+            />
+        )) ||
+            (project.slug === "2023/ohaizac-dev" && (
+                <iframe
+                    class="project-demo"
+                    width="320"
+                    height="200"
+                    src="https://ohaizac.dev"
+                />
+            )) ||
+            (project.data.image && (
+                <Image
+                    alt={
+                        project.data.image_alt ??
+                        "Screenshot of " + project.data.name
+                    }
+                    class="project-demo"
+                    width="320"
+                    height="200"
+                    src={project.data.image}
+                />
+            ))
     }
     <div class="project-description">
         <p>{project.data.description}</p>
@@ -49,22 +70,11 @@ if (project.data.demo && project.data.demo.includes("youtube.com")) {
     .project {
         background-color: var(--bg-1);
         padding: 1.5rem;
-        display: grid;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
         gap: 20px;
         min-height: 200px;
-        border-radius: 25px;
-
-        grid-template:
-            "title demo" auto
-            "description demo" auto / auto 320px;
-    }
-
-    .project:not(:is(:first-child)) {
-        margin-top: 20px;
-    }
-
-    .project-title {
-        grid-area: title;
     }
 
     .project-demo {
@@ -72,10 +82,7 @@ if (project.data.demo && project.data.demo.includes("youtube.com")) {
         width: 320px;
         height: 200px;
         object-fit: contain;
-    }
-
-    .project-description {
-        grid-area: description;
+        object-position: right;
     }
 
     .project h1 {
@@ -92,6 +99,10 @@ if (project.data.demo && project.data.demo.includes("youtube.com")) {
                 "title" auto
                 "demo" auto
                 "description" auto / auto;
+        }
+
+        .project-demo {
+            object-position: left;
         }
     }
 </style>

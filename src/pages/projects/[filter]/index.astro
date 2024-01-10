@@ -17,14 +17,31 @@ const filterValues = isFilter(filter) ? await getFilterValues(filter) : [];
 ---
 
 <Layout>
-    <h1>projects by {filter}</h1>
-    <ul>
+    <h3>{filter}</h3>
+    <p>
         {
-            filterValues.map((value) => (
-                <li>
-                    <a href={`/projects/${filter}/${value}`}>{value}</a>
-                </li>
+            filterValues.map((entry) => (
+                <span class="link">
+                    <a href={`/projects/${filter}/${entry.value}`}>
+                        {entry.value}
+                    </a>
+                    ({entry.count})
+                </span>
             ))
         }
-    </ul>
+    </p>
 </Layout>
+<style>
+    ul {
+        list-style: none;
+    }
+
+    .link {
+        white-space: nowrap;
+        display: inline-block;
+    }
+
+    .link:not(:last-child) {
+        padding-right: 1em;
+    }
+</style>

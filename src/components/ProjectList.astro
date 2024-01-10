@@ -11,6 +11,19 @@ interface Props {
 const { projects } = Astro.props;
 ---
 
-<div>
+<div class="class-list">
     {projects.map((project) => <ProjectEntry project={project} />)}
 </div>
+<style>
+    .class-list {
+        display: grid;
+        grid-template-columns: auto;
+        gap: 20px;
+    }
+
+    @media only screen and (min-width: 1100px) {
+        .class-list {
+            grid-template-columns: auto auto;
+        }
+    }
+</style>

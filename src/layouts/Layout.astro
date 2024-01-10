@@ -12,6 +12,7 @@ import "@assets/global.css";
 const { title } = Astro.props;
 
 const breadcrumbs = Astro.url.pathname
+	.replace("%20", " ")
 	.split("/")
 	.filter((value) => value !== "");
 
@@ -47,23 +48,26 @@ const crumbUrl = (index: number) =>
 	</head>
 	<body>
 		<header>
-			<h1>
-				<a href={breadcrumbs.length > 0 ? "/" : null}>ohaizac.dev</a>
-				<span class="breadcrumbs">
-					{
-						breadcrumbs.length > 0 &&
-							breadcrumbs.map((crumb, i) => (
-								<span>
-									{i < breadcrumbs.length - 1 ? (
-										<a href={crumbUrl(i)}>{crumb}</a>
-									) : (
-										<>{crumb}</>
-									)}
-								</span>
-							))
-					}
-				</span>
-			</h1>
+			<div class="scroll">
+				<h1>
+					<a href={breadcrumbs.length > 0 ? "/" : null}>ohaizac.dev</a
+					>
+					<span class="breadcrumbs">
+						{
+							breadcrumbs.length > 0 &&
+								breadcrumbs.map((crumb, i) => (
+									<span>
+										{i < breadcrumbs.length - 1 ? (
+											<a href={crumbUrl(i)}>{crumb}</a>
+										) : (
+											<>{crumb}</>
+										)}
+									</span>
+								))
+						}
+					</span>
+				</h1>
+			</div>
 		</header>
 
 		<main>
@@ -102,6 +106,24 @@ const crumbUrl = (index: number) =>
 				margin: 1rem 0;
 			}
 
+			header .scroll {
+				overflow-x: scroll;
+				-ms-overflow-style: none;
+				scrollbar-width: none;
+			}
+
+			header .scroll::-webkit-scrollbar {
+				display: none;
+			}
+
+			header a {
+				color: var(--text-1);
+			}
+
+			header a[href] {
+				color: var(--accent-1);
+			}
+
 			footer a {
 				color: var(--accent-1);
 			}
@@ -116,12 +138,8 @@ const crumbUrl = (index: number) =>
 				margin-right: 1rem;
 			}
 
-			header a {
-				color: var(--text-1);
-			}
-
-			header a[href] {
-				color: var(--accent-1);
+			footer li > p {
+				display: inline;
 			}
 
 			main {
