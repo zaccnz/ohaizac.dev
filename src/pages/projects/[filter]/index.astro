@@ -17,8 +17,8 @@ const filterValues = isFilter(filter) ? await getFilterValues(filter) : [];
 ---
 
 <Layout>
-    <h3>{filter}</h3>
-    <p>
+    <h2>filters by {filter}</h2>
+    <h3>
         {
             filterValues.map((entry) => (
                 <span class="link">
@@ -28,6 +28,30 @@ const filterValues = isFilter(filter) ? await getFilterValues(filter) : [];
                     ({entry.count})
                 </span>
             ))
+        }
+    </h3>
+    <p>
+        or by
+        {
+            filter !== "year" && (
+                <span class="link">
+                    <a href="/projects/year">year</a>
+                </span>
+            )
+        }
+        {
+            filter !== "tag" && (
+                <span class="link">
+                    <a href="/projects/tag">tag</a>
+                </span>
+            )
+        }
+        {
+            filter !== "lang" && (
+                <span class="link">
+                    <a href="/projects/lang">lang</a>
+                </span>
+            )
         }
     </p>
 </Layout>

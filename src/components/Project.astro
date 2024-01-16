@@ -16,25 +16,28 @@ const { Content } = await project.render();
             {project.data.name}
         </h1>
         <h3>{project.data.tagline}</h3>
-        <h3>
+        <p>
+            year:
             <a href={`/projects/year/${project.data.year}`}
                 >{project.data.year}</a
-            >
-        </h3>
-        {
-            project.data.links && (
-                <p class="link-list">
-                    links:
-                    {Object.entries(project.data.links).map(([key, value]) => (
-                        <span>
-                            <a href={value}>{key}</a>
-                        </span>
-                    ))}
-                </p>
-            )
-        }
+            >,
+            {
+                project.data.links && (
+                    <span class="link-list">
+                        links:
+                        {Object.entries(project.data.links).map(
+                            ([key, value]) => (
+                                <span>
+                                    <a href={value}>{key}</a>
+                                </span>
+                            ),
+                        )}
+                    </span>
+                )
+            }
+        </p>
     </div>
-    <div>
+    <div class="content">
         <Content />
     </div>
     <div>
@@ -63,12 +66,8 @@ const { Content } = await project.render();
     </div>
 </div>
 <style>
-    h1 {
-        margin: 0;
-    }
-
-    h3 {
-        margin: 0;
+    .content {
+        margin: 2rem 0;
     }
 
     .link-list span:not(:last-child)::after {

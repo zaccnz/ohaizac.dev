@@ -93,7 +93,7 @@ const crumbUrl = (index: number) =>
 			header,
 			footer {
 				color: var(--text-1);
-				padding: 2rem;
+				margin: 2em;
 			}
 
 			header {
@@ -103,7 +103,7 @@ const crumbUrl = (index: number) =>
 
 			header h1 {
 				font-size: 2em;
-				margin: 1rem 0;
+				margin: 0.5em 0;
 			}
 
 			header .scroll {
@@ -124,6 +124,17 @@ const crumbUrl = (index: number) =>
 				color: var(--accent-1);
 			}
 
+			.breadcrumbs > span:not(last-child)::before {
+				content: "/";
+			}
+
+			main {
+				padding: 0em 2em;
+				color: var(--text-0);
+				line-height: 1.6;
+				flex: 1;
+			}
+
 			footer a {
 				color: var(--accent-1);
 			}
@@ -135,29 +146,11 @@ const crumbUrl = (index: number) =>
 
 			footer li {
 				display: inline;
-				margin-right: 1rem;
+				margin-right: 1em;
 			}
 
 			footer li > p {
 				display: inline;
-			}
-
-			main {
-				padding: 0rem 2rem;
-				color: var(--text-0);
-				font-size: 20px;
-				line-height: 1.6;
-				flex: 1;
-			}
-
-			.breadcrumbs > span:not(last-child)::before {
-				content: "/";
-			}
-
-			body {
-				display: flex;
-				flex-direction: column;
-				height: 100%;
 			}
 		</style>
 	</body>

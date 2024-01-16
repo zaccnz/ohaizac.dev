@@ -4,22 +4,11 @@
 
 import type { CollectionEntry } from "astro:content";
 import { Image } from "astro:assets";
-import LinkList from "@components/LinkList.astro";
 interface Props {
     project: CollectionEntry<"projects">;
 }
 
 const { project } = Astro.props;
-
-let links: { name: string; url: string }[] | undefined = undefined;
-if (project.data.links) {
-    let projectLinks = project.data.links;
-    links = [
-        projectLinks.github && { name: "github", url: projectLinks.github },
-        projectLinks.demo && { name: "demo", url: projectLinks.demo },
-        projectLinks.homepage && { name: "home", url: projectLinks.homepage },
-    ].filter((value) => value !== undefined) as { name: string; url: string }[];
-}
 ---
 
 <div class="project">
