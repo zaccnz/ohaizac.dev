@@ -1,37 +1,69 @@
 ---
-// View of one project
-
-import Layout from "@layouts/Layout.astro";
-import Project from "@components/Project.astro";
+import Layout from "@components/layout/Layout.astro";
+import LinkList from "@components/LinkList.astro";
+import ProjectShowcase from "@components/project/ProjectShowcase.astro";
+import { transformFilterValue } from "@utils/projects";
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
-    const projects = await getCollection("projects");
+  const projects = await getCollection("projects");
 
-    // Ensure that there are no duplicate project slugs within the folders
-    const projectSlugs = projects.map((project) => project.slug);
-    const splitProjectSlugs = projectSlugs.map((slug) => slug.split("/")[1]);
-    for (let i = 0; i < projectSlugs.length; i++) {
-        const matchingSlug = splitProjectSlugs.indexOf(splitProjectSlugs[i]);
-        if (matchingSlug !== i) {
-            throw Error(
-                "Duplicate slug detected: " +
-                    projectSlugs[i] +
-                    " and " +
-                    projectSlugs[matchingSlug],
-            );
+  projects
+    .map((project) => project.slug)
+    .reduce(
+      (accum, fullSlug) => {
+        const slug = fullSlug.split("/").pop();
+        if (!slug) {
+          throw `Invalid project slug ${slug} (should contain at least one /)`;
         }
-    }
+        if (slug in accum) {
+          throw `Project slug ${fullSlug} duplicates ${accum[slug]}!`;
+        }
+        accum[slug] = fullSlug;
+        return accum;
+      },
+      {} as Record<string, string>,
+    );
 
-    return projects.map((project) => ({
-        params: { project: project.slug.split("/")[1] },
-        props: { project },
-    }));
+  return projects.map((project) => ({
+    params: { project: project.slug.split("/").pop() },
+    props: { project },
+  }));
 }
 
 const { project } = Astro.props;
+const { Content } = await project.render();
+
+const linksWithBase = (links: string[], base: string) =>
+  links
+    .map(transformFilterValue)
+    .map((label) => ({ label, href: base + label }));
+
+const languages = linksWithBase(project.data.languages, "/projects/lang/");
+const tags = linksWithBase(project.data.tags, "/projects/tag/");
+
+const links = Object.entries(project.data.links ?? {}).map(([label, href]) => ({
+  label,
+  href,
+}));
 ---
 
 <Layout>
-    <Project project={project} />
+  <div>
+    <h1>
+      {project.data.name}
+    </h1>
+    <h3>{project.data.tagline}</h3>
+  </div>
+  <Content />
+  <ProjectShowcase project={project} size="large" />
+  <div>
+    {links.length > 0 && <LinkList links={links} title="links" sep />}
+    <p>
+      year:
+      <a href={`/projects/year/${project.data.year}`}>{project.data.year}</a>
+    </p>
+    <LinkList links={languages} title="languages" sep />
+    <LinkList links={tags} title="tags" sep />
+  </div>
 </Layout>

@@ -1,0 +1,47 @@
+---
+import type { HTMLTag, Polymorphic } from "astro/types";
+
+type Props<Tag extends HTMLTag = "p"> = Polymorphic<{
+  as: Tag;
+}> & {
+  links: { label: string; href: string; description?: string }[];
+  sep?: boolean;
+  title?: string;
+};
+
+const { as: Tag = "p", links, title, sep } = Astro.props;
+const linkClasses = sep ? ["link", "sep"] : ["link"];
+---
+
+<Tag class="link-list">
+  {title && `${title}:`}
+  {
+    links.map(({ label, href, description }) => (
+      <span class:list={linkClasses}>
+        <a href={href}>{label}</a>
+        {description && <span class="description">{description}</span>}
+      </span>
+    ))
+  }
+</Tag>
+<style>
+  .link-list {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 1em;
+    row-gap: 0.2em;
+  }
+
+  .link {
+    white-space: nowrap;
+    display: inline-flex;
+  }
+
+  .link.sep:not(:last-child)::after {
+    content: ",";
+  }
+
+  .description {
+    margin-left: 0.5em;
+  }
+</style>

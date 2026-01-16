@@ -1,0 +1,68 @@
+---
+import { fade } from "astro:transitions";
+
+const breadcrumbs = Astro.url.pathname
+  .replace("%20", " ")
+  .split("/")
+  .filter((value) => value !== "");
+
+const crumbUrl = (index: number) =>
+  "/" + breadcrumbs.slice(0, index + 1).join("/");
+---
+
+<h1>
+  <span style="view-transition-name: ohaizac-dev">
+    <a href={breadcrumbs.length > 0 ? "/" : null}>ohaizac.dev</a>
+  </span>
+  {
+    breadcrumbs.length > 0 &&
+      breadcrumbs.map((crumb, i) => (
+        <span
+          class="breadcrumb"
+          style={`view-transition-name: breadcrumb-${i}`}
+        >
+          {i < breadcrumbs.length - 1 ? (
+            <a href={crumbUrl(i)}>{crumb}</a>
+          ) : (
+            <>{crumb}</>
+          )}
+        </span>
+      ))
+  }
+</h1>
+
+<style>
+  h1 {
+    font-size: 2em;
+    margin: 0;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    white-space: nowrap;
+    max-width: 100%;
+    display: inline-flex;
+  }
+
+  h1::-webkit-scrollbar {
+    display: none;
+  }
+
+  span {
+    display: inline-flex;
+    view-transition-class: header;
+  }
+
+  .breadcrumb:not(last-child)::before {
+    content: "/";
+  }
+
+  a {
+    color: var(--text-0);
+    text-decoration: none;
+  }
+
+  a[href] {
+    color: var(--accent-0);
+    cursor: pointer;
+  }
+</style>
+<style></style>

@@ -2,18 +2,18 @@
 name: "ohaizac.dev"
 tagline: "this website"
 links:
-    github: "https://github.com/zaccnz/ohaizac.dev"
+  github: "https://github.com/zaccnz/ohaizac.dev"
 languages:
-    - "HTML"
-    - "Astro"
-    - "TypeScript"
+  - "HTML"
+  - "Astro"
+  - "TypeScript"
 tags:
-    - "astro"
-    - "ssg"
-    - "markdown"
+  - "astro"
+  - "ssg"
+  - "markdown"
+demo: "https://ohaizac.dev"
 featured: 3
 year: "2023"
 ---
 
-this website was created using Astro, TypeScript, Markdown, HTML and CSS.  all of the content is separate from the layout of the website.  this allows me to update the website's content quickly.
-Astro allows me to generate my site statically from all of this data.  There is no server-side code required to host the website, and minimal client-side code to view it.
+this website was created using Astro, TypeScript, Markdown, HTML and CSS. it uses SSG to generate these project entries from a folder of markdown files, CSS page transitions for multi-page animations, and a small low-quality image placeholder tool I wrote to prevent pop-in of images. it updates with each git commit using a Cloudflare Pages CI/CD pipeline.

@@ -1,0 +1,33 @@
+---
+import type { CollectionEntry } from "astro:content";
+import ProjectListItem from "./ProjectListItem.astro";
+
+interface Props {
+  projects: CollectionEntry<"projects">[];
+}
+
+const { projects } = Astro.props;
+---
+
+<div>
+  {projects.map((project) => <ProjectListItem project={project} />)}
+</div>
+<style>
+  div {
+    display: grid;
+    grid-template-columns: auto;
+    gap: 20px;
+  }
+
+  @media only screen and (min-width: 800px) {
+    div {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media only screen and (min-width: 1300px) {
+    div {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+</style>

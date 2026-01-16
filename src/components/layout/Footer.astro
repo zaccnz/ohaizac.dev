@@ -1,0 +1,31 @@
+---
+import LinkList from "@components/LinkList.astro";
+import { getDateString, getTimezoneString } from "@utils/date";
+
+const links = [
+  {
+    label: "github",
+    href: "https://github.com/zaccnz/",
+  },
+  {
+    label: "linkedin",
+    href: "https://linkedin.com/in/zac-cleveland",
+  },
+  {
+    label: "mail@ohaizac.dev",
+    href: "mailto:mail@ohaizac.dev",
+  },
+];
+---
+
+<LinkList links={links} />
+<p>
+  generated <span title={getTimezoneString()}>
+    {getDateString()}
+  </span>
+</p>
+<style>
+  p {
+    color: var(--text-1);
+  }
+</style>

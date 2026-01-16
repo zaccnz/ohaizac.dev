@@ -1,0 +1,85 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { generateLQIP } from "@utils/lqip";
+import lqipScript from "./lqip-load?raw";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+  size: "large" | "small";
+}
+
+const { project, size } = Astro.props;
+const { demo, image } = project.data;
+
+const slug = project.slug.split('/').pop();
+const lqip = image ? await generateLQIP(image) : undefined;
+const width = size === "large" ? 700 : 340;
+const aspect = lqip?.aspect ?? "16 / 9";
+---
+
+<div class="showcase" style={`view-transition-name: project-showcase-${slug}`}>
+  {demo && <iframe src={demo} />}
+  {lqip && (
+    <div
+      class="placeholder"
+      style={`background-image: url(${lqip.placeholder})`}
+    />
+    <img
+      alt={project.data.image_alt ?? "Screenshot of " + project.data.name}
+      src={lqip.src}
+      class={`showcase-img-${slug}`}
+      onload="this.parentElement.addClass('loaded');"
+      loading="lazy"
+    />
+    <script is:inline define:vars={{ slug }} set:html={lqipScript}></script>
+  )}
+</div>
+
+<style define:vars={{ aspect, width, visible: (demo ?? lqip) ? 'block' : 'none' }}>
+  .showcase {
+    width: calc(var(--width) * 1px);
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: var(--aspect);
+    display: var(--visible);
+
+    position: relative;
+    overflow: hidden;
+  }
+
+  iframe, img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .placeholder {
+    position: absolute;
+    inset: 0;
+    filter: blur(15px);
+    background-size: cover;
+    z-index: 1;
+  }
+
+  img {
+    position: relative;
+    z-index: 2;
+    display: block;
+    opacity: 0;
+  }
+
+  .has-transition img {
+    transition: opacity 0.3s ease-in;
+  }
+
+  .has-transition .placeholder {
+    transition: opacity 0.4s ease-out;
+  }
+
+  img.loaded {
+    opacity: 1;
+  }
+
+  img.loaded + .placeholder {
+    opacity: 0;
+  }
+</style>
