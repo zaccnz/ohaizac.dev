@@ -2,20 +2,20 @@
 name: "shaderbg"
 tagline: "lightweight animated backgrounds"
 links:
-    github: "https://github.com/zaccnz/shaderbg"
-    demo: "https://zaccnz.github.io/shaderbg"
+  github: "https://github.com/zaccnz/shaderbg"
+  demo: "https://zaccnz.github.io/shaderbg"
 languages:
-    - "Rust"
-    - "WGSL"
+  - "Rust"
+  - "WGSL"
 tags:
-    - "graphics"
-    - "shadertoy"
-    - "rust"
-    - "wgpu"
-    - "egui"
-    - "wasm"
-    - "cross platform"
-image: "https://github.com/zaccnz/shaderbg/blob/main/repo/demo.gif?raw=true"
+  - "graphics"
+  - "shadertoy"
+  - "rust"
+  - "wgpu"
+  - "egui"
+  - "wasm"
+  - "cross platform"
+image: "shaderbg.gif"
 featured: 2
 year: "2023"
 ---

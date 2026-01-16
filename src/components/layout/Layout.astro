@@ -1,0 +1,59 @@
+---
+import globalCss from "@assets/styles/global.css?inline";
+import fontCss from "@assets/styles/font.css?inline";
+import coloursCss from "@assets/styles/colours.css?inline";
+import transitionsCss from "@assets/styles/transitions.css?inline";
+import Header from "./Header.astro";
+import Footer from "./Footer.astro";
+
+interface Props {
+  title?: string;
+}
+
+const { title } = Astro.props;
+
+const globalStyles = [globalCss, fontCss, coloursCss, transitionsCss];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="zac cleveland's portfolio website" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" />
+    <style is:inline is:global set:html={globalCss}></style>
+    <style is:inline is:global set:html={fontCss}></style>
+    <style is:inline is:global set:html={coloursCss}></style>
+    <style is:inline is:global set:html={transitionsCss}></style>
+    <meta name="generator" content={Astro.generator} />
+    <title>{title ? `${title} - ohaizac.dev` : "ohaizac.dev"}</title>
+  </head>
+  <body>
+    <header>
+      <Header />
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer>
+      <Footer />
+    </footer>
+    <style>
+      header,
+      footer {
+        padding: 2em;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+
+      main {
+        padding: 0em 2em;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+      }
+    </style>
+  </body>
+</html>

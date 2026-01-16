@@ -1,0 +1,16 @@
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-group(root) {
+  animation: none !important;
+}
+
+::view-transition-group(.header) {
+  animation-name: none !important;
+}
+::view-transition-old(.header),
+::view-transition-new(.header) {
+  transform: none !important;
+  mix-blend-mode: normal !important;
+}

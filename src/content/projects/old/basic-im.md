@@ -2,17 +2,16 @@
 name: "basic-im"
 tagline: "An instant messenger using Java sockets, with a server and client."
 links:
-    github: "https://github.com/DeadPotatoX/basic-im"
+  github: "https://github.com/DeadPotatoX/basic-im"
 languages:
-    - "Java"
+  - "Java"
 tags:
-    - "java"
-    - "sockets"
-    - "server"
-    - "client"
-    - "messaging"
-demo: "https://www.youtube.com/embed/U-mlS_T-3Kk"
-featured: 7
+  - "java"
+  - "sockets"
+  - "server"
+  - "client"
+  - "messaging"
+demo: "https://www.youtube.com/embed/U-mlS_T-3Kk?mute=1"
 year: "2015"
 ---
 

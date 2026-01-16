@@ -1,54 +1,31 @@
 ---
-// Home Page
-
-interface Frontmatter {
-  links: { name: string; url: string }[];
-}
-
-import Layout from "@layouts/Layout.astro";
-import { getMyAge } from "@utils/date";
+import Layout from "@components/layout/Layout.astro";
 ---
 
 <Layout>
   <div class="content">
     <h1>zac cleveland</h1>
-    <p>
-      {getMyAge()} yr old software developer from new zealand.
-    </p>
-    <p>bsc (compsci and mathematics) 2022 from the university of auckland.</p>
+    <h2>software developer</h2>
   </div>
   <div>
     <ul>
       <li><h2><a href="/about">about</a></h2></li>
       <li><h2><a href="/projects">projects</a></h2></li>
       <li><h2><a href="/cv.pdf">cv</a></h2></li>
-      <li><h2><a href="/more">more</a></h2></li>
     </ul>
   </div>
 </Layout>
 <style>
   .content {
-    margin-bottom: 3em;
-  }
-
-  .content p {
-    margin: 0.5em 0;
-    line-height: 1.2;
+    line-height: 1;
   }
 
   ul {
-    margin: auto;
-    list-style: none;
     padding-left: 0;
-    line-height: 0.6em;
+    list-style: none;
   }
 
-  li > h2 {
-    margin: 0.7em 0;
-  }
-
-  li a {
-    color: var(--accent-0);
+  a {
     text-decoration: none;
   }
 </style>

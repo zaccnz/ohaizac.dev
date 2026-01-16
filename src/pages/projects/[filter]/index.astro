@@ -1,71 +1,36 @@
 ---
 // View a list of all filter values
 
-import Layout from "@layouts/Layout.astro";
-import { getFilterValues, isFilter } from "@utils/projects";
+import Layout from "@components/layout/Layout.astro";
+import LinkList from "@components/LinkList.astro";
+import { getFilterValues, FilterList } from "@utils/projects";
 
-export async function getStaticPaths() {
-    return [
-        { params: { filter: "year" } },
-        { params: { filter: "tag" } },
-        { params: { filter: "lang" } },
-    ];
+export function getStaticPaths() {
+  return FilterList.map((filter) => ({
+    params: {
+      filter,
+    },
+  }));
 }
 
 const { filter } = Astro.params;
-const filterValues = isFilter(filter) ? await getFilterValues(filter) : [];
+
+const links = Object.entries(await getFilterValues(filter)).map(
+  ([label, count]) => ({
+    label,
+    href: `/projects/${filter}/${label}`,
+    description: `(${count})`,
+  }),
+);
+
+const filterLinks = FilterList.filter((v) => v !== filter).map((label) => ({
+  label,
+  href: `/projects/${label}`,
+}));
 ---
 
 <Layout>
-    <h2>filters by {filter}</h2>
-    <h3>
-        {
-            filterValues.map((entry) => (
-                <span class="link">
-                    <a href={`/projects/${filter}/${entry.value}`}>
-                        {entry.value}
-                    </a>
-                    ({entry.count})
-                </span>
-            ))
-        }
-    </h3>
-    <p>
-        or by
-        {
-            filter !== "year" && (
-                <span class="link">
-                    <a href="/projects/year">year</a>
-                </span>
-            )
-        }
-        {
-            filter !== "tag" && (
-                <span class="link">
-                    <a href="/projects/tag">tag</a>
-                </span>
-            )
-        }
-        {
-            filter !== "lang" && (
-                <span class="link">
-                    <a href="/projects/lang">lang</a>
-                </span>
-            )
-        }
-    </p>
+  <h2>filters by {filter}</h2>
+  <LinkList as="h3" links={links} sep />
+  <LinkList links={filterLinks} title="or by" sep />
 </Layout>
-<style>
-    ul {
-        list-style: none;
-    }
-
-    .link {
-        white-space: nowrap;
-        display: inline-block;
-    }
-
-    .link:not(:last-child) {
-        padding-right: 1em;
-    }
-</style>

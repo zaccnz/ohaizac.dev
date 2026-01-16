@@ -1,18 +1,19 @@
 ---
 // List of all featured projects, sorted by feature (ascending)
 
-import Layout from "@layouts/Layout.astro";
-import ProjectList from "@components/ProjectList.astro";
+import Layout from "@components/layout/Layout.astro";
+import ProjectList from "@components/project/ProjectList.astro";
 import { getCollection } from "astro:content";
 
 const allProjects = await getCollection("projects");
 const featuredProjects = allProjects
   .filter((project) => project.data.featured !== undefined)
-  // @ts-ignore
-  .sort((left, right) => left.data.featured - right.data.featured);
+  .map((project) => [project, project.data.featured ?? -1] as const)
+  .sort(([_, left], [__, right]) => left - right)
+  .map(([project, _]) => project);
 ---
 
-<Layout>
+<Layout title="featured projects">
   <h3>featured projects</h3>
   <ProjectList projects={featuredProjects} />
   <p><a href="/projects/all">view all</a></p>
