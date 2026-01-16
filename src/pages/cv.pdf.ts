@@ -1,8 +1,4 @@
-// Endpoint to serve my CV as an inline pdf
-// This means that users can view the pdf in their browser easily.
-
 import type { APIRoute } from "astro";
-// @ts-ignore
 import fs from "node:fs/promises";
 import path from "node:path";
 

@@ -10,6 +10,3 @@ export const getTimezoneString = () =>
   new Date()
     .toLocaleDateString(undefined, { day: "2-digit", timeZoneName: "long" })
     .substring(4);
-
-export const getMyAge = () =>
-  Math.round((new Date().getTime() - 1.0123884e12) * 3.16887646e-11);

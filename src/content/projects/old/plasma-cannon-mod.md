@@ -1,6 +1,6 @@
 ---
-name: "Plasma Cannon Mod"
-tagline: "Minecraft mod with a Plasma Cannon, custom crafting table and new recipes."
+name: "plasma cannon mod"
+tagline: "Minecraft mod with a plasma cannon, custom crafting table and new recipes"
 languages:
   - "Java"
 tags:
@@ -10,4 +10,4 @@ demo: "https://www.youtube.com/embed/_XQl_SOWx4E?mute=1"
 year: "2013"
 ---
 
-This is the first Minecraft mod that I felt was flashy enough to show off. Unfortunately, I have lost the source code. Ignore the spelling mistake at the start, I was 11 😆.
+this is the first Minecraft mod that I felt was flashy enough to show off. Unfortunately, I have lost the source code. Ignore the spelling mistake at the start, I was 11 😆.

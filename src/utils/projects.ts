@@ -23,16 +23,13 @@ const MapFunctions: { [K in Filter]: MapFunction<K> } = {
 export const transformFilterValue = (value: string): string =>
   value.toLowerCase().replaceAll(" ", "-");
 
-export const getFilteredProjects = async (filter: Filter, value: string) => {
-  return await getCollection("projects", (collection) => {
-    return MapFunctions[filter](collection).includes(value);
-  });
-};
+export const getFilteredProjects = async (filter: Filter, value: string) =>
+  await getCollection("projects", (project) =>
+    MapFunctions[filter](project).includes(value),
+  );
 
-export const getFilterValues = async (filter: Filter) => {
-  const projects = await getCollection("projects");
-
-  return projects
+export const getFilterValues = async (filter: Filter) =>
+  (await getCollection("projects"))
     .map<string | string[]>(MapFunctions[filter])
     .flat()
     .reduce(
@@ -42,12 +39,9 @@ export const getFilterValues = async (filter: Filter) => {
       },
       {} as Record<string, number>,
     );
-};
 
-export const getAllFilterValues = async () => {
-  const projects = await getCollection("projects");
-
-  return projects
+export const getAllFilterValues = async () =>
+  (await getCollection("projects"))
     .map((project) =>
       FilterList.map((filter) => ({
         filter,
@@ -75,4 +69,3 @@ export const getAllFilterValues = async () => {
       },
       [] as { filter: Filter; value: string }[],
     );
-};

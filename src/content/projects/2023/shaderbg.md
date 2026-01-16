@@ -20,6 +20,4 @@ featured: 2
 year: "2023"
 ---
 
-shaderbg provides animated desktop backgrounds.
-it can render custom scenes or existing ShaderToy scripts.
-designed to be lightweight as to not impact your computer's performance.
+shaderbg provides animated desktop backgrounds. it can render custom scenes or existing ShaderToy scripts. designed to be lightweight to not impact your computer's performance.

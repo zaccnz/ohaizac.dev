@@ -12,6 +12,6 @@ tags:
   - "vite"
   - "game"
 image: "sudoku.png"
-featured: 3
+featured: 4
 year: "2022"
 ---

@@ -13,9 +13,8 @@ tags:
   - "wasm"
   - "game"
 image: "solitaire.gif"
-featured: 4
+featured: 5
 year: "2022"
 ---
 
-A solitaire game for Windows, macOS, Linux and Web. Has support for timed games, a leaderboard, animations, and multiple texture packs.
-Try it out online, or clone the repository and build the executable.
+a solitaire game for Windows, macOS, Linux and Web. has support for timed games, a leaderboard, animations, and multiple texture packs. try it out online, or clone the repository and build the executable.

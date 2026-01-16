@@ -17,4 +17,6 @@ image: "chess.png"
 year: "2022"
 ---
 
-Play against a friend locally, a bot, or friend online.
+play chess against a friend locally, a bot, or a friend online. built using react, vite and firebase for multiplayer lobbies.
+
+(the server has been disabled)
